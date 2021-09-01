@@ -16,15 +16,15 @@ def scrape_js_content(url):
         response = session.get(url)
     except requests.exceptions.RequestException as e:
         print(e)
-
-    session.close()
+    finally:
+        session.close()
 
     return response.content
 
 
 def process_page(soup):
     """
-    :param url:
+    :param:
     :return:
     """
     freelancers = soup.findAll('div', {'class': "up-card-section up-card-hover"})
@@ -68,16 +68,19 @@ if __name__ == '__main__':
         data += process_page(BeautifulSoup(scrape_js_content(url), 'html.parser'))
 
         # explicit wait times
-        time.sleep(np.random.randint(7, 12))
+        time.sleep(np.random.randint(30, 60))
         # check if scraper wasn't blocked
         if len(data) == current_len:
             print('scraper blocked')
             break
+        else:
+            current_len = len(data)
 
         print(f'{page}/{pages} scraped.')
 
-
     # create pandas DataFrame
-    df = pd.DataFrame(data, columns=['Name', 'Title', 'Country', 'Rate', 'Earnings', 'Success', 'Badges', 'Description'])
-    df.to_csv(f'data/{search_key_word}.csv')
+    df = pd.DataFrame(data, columns=['Name', 'Title', 'Country', 'Rate',
+                                     'Earnings', 'Success', 'Badges', 'Description'])
+    filename = f"data/{search_key_word.replace(' ', '_')}.csv"
+    df.to_csv(filename)
 

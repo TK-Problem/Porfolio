@@ -78,6 +78,14 @@ if __name__ == '__main__':
 
         print(f'{page}/{pages} scraped.')
 
+        # save temp version every 10 pages
+        if page % 10 == 0:
+            df = pd.DataFrame(data, columns=['Name', 'Title', 'Country', 'Rate',
+                                             'Earnings', 'Success', 'Badges', 'Description'])
+            filename = f"data/{search_key_word.replace(' ', '_')}.csv"
+            df.to_csv(filename)
+
+
     # create pandas DataFrame
     df = pd.DataFrame(data, columns=['Name', 'Title', 'Country', 'Rate',
                                      'Earnings', 'Success', 'Badges', 'Description'])

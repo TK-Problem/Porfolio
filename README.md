@@ -1,10 +1,12 @@
 # Portfolio
 
-Personal repository to showcase data scientist and data analyst skills.
+Personal repository to showcase data scientist and analyst skills.
 
-## Description
+## Structure
 
-* `Notebooks` Jupyter notebooks showcasing different skills.
+* `Notebooks` Jupyter notebooks showcasing data scraping, analysing and modeling skills.
+  * `data` .csv files.
+  * `images` support material for notebooks.
 
 ## Requirements
 

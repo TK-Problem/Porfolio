@@ -59,6 +59,7 @@ if __name__ == '__main__':
 
     search_key_word = input("Search term: ")
     pages = int(input("How many pages to scrape (max 500): "))
+    start_page = int(input("Start page (max 499): "))
 
     data = list()
     current_len = len(data)

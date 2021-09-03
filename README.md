@@ -5,7 +5,7 @@ Personal repository to showcase data scientist and analyst skills.
 ## Structure
 
 * `Notebooks` Jupyter notebooks showcasing data scraping, analysing and modeling skills.
-  * `data` small sample .csv files.
+  * `data` small sample .csv files of example data for notebooks.
   * `images` support material for notebooks.
 
 ## Requirements

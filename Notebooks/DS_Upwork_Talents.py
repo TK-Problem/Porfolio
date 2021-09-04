@@ -64,7 +64,7 @@ if __name__ == '__main__':
     data = list()
     current_len = len(data)
 
-    for page in range(1, pages+1):
+    for page in range(start_page, pages+1):
         url = f'https://www.upwork.com/search/profiles/?page={page}&q=' + search_key_word.replace(' ', '%20')
         data += process_page(BeautifulSoup(scrape_js_content(url), 'html.parser'))
 
@@ -83,13 +83,13 @@ if __name__ == '__main__':
         if page % 10 == 0:
             df = pd.DataFrame(data, columns=['Name', 'Title', 'Country', 'Rate',
                                              'Earnings', 'Success', 'Badges', 'Description'])
-            filename = f"data/{search_key_word.replace(' ', '_')}.csv"
+            filename = f"{search_key_word.replace(' ', '_')}_{start_page}_{page}_{pages}.csv"
             df.to_csv(filename)
 
 
     # create pandas DataFrame
     df = pd.DataFrame(data, columns=['Name', 'Title', 'Country', 'Rate',
                                      'Earnings', 'Success', 'Badges', 'Description'])
-    filename = f"data/{search_key_word.replace(' ', '_')}.csv"
+    filename = f"{search_key_word.replace(' ', '_')}_{start_page}_{pages}.csv"
     df.to_csv(filename)
 
